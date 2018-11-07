@@ -19,4 +19,4 @@ You can here how to run the code.
 If you have any question or difficulty to run the code please contact me at vas@iastate.edu.
 
 
-_Disclaimer: This implementation is not the same as the implementation we used for our experiments. I changed the implementation to make it easier to understand and read for other researchers. In the original implementation, when the paremter gamma = 1, we use clique enumeration. For the sake of simplcity and convinience, we use quickM even when gamma = 1._
+_Disclaimer: This implementation is not the same as the implementation we used for our experiments. I changed the implementation to make it easier to understand and read for other researchers. In the original implementation, when the paremter gamma = 1, we use clique enumeration. For the sake of simplcity and convinience, we use quickM even if gamma = 1._
