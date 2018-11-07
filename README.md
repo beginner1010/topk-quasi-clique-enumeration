@@ -14,7 +14,7 @@ You may find the C++ implementation of our algorithm in the source folder.
 You can here how to run the code.
 
 <p align="center">
-  <img src="images/quasiclique.gif"/>
+  <img src="demo/quasiclique.gif"/>
 </p>
 
 If you have any question or difficulty to run the code please contact me at vas@iastate.edu.
