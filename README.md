@@ -10,7 +10,7 @@ You can find the longer version of this paper here: https://arxiv.org/pdf/1808.0
 
 You may find the C++ implementation of our algorithm in the source folder. 
 
-You can here how to run the code.
+See how you can run the code.
 
 <p align="center">
   <img src="demo/quasiclique.gif"/>
