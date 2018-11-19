@@ -9,7 +9,7 @@ set(CMAKE_CXX_FLAGS "-Wall -Wextra")
 set(CMAKE_CXX_FLAGS_DEBUG "-g")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
-project (stream_butterfly)
+project (quasi-clique)
 file (GLOB SRCS "./source/*")
 # add the executable
 add_executable (quasi_clique ${SRCS})
