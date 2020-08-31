@@ -26,9 +26,30 @@ void print_quasi_cliques(std::vector< std::pair< int, std::set<int> > > quasi_cl
 	}
 }
 
-int main() {
+int main(int argc, char* argv[]) {
+	
 	std::ios::sync_with_stdio(false);
-
+	
+	if(argc > 1) {
+		for(int i = 0; argv[1][i]; i ++) 
+			argv[1][i] = tolower(argv[1][i]);
+		if(std::string(argv[1]) == "exact") {
+			double start_t = clock();
+			load_graph* graph = new load_graph();
+			graph->start_exact();
+			// quickm extracts quasi cliques with the parameter gamma
+			quickM* quickm = new quickM(*graph, graph->gamma);
+			quickm->extract_all_quasi_cliques();
+			auto all_gamma_quasi_cliques = quickm->get_all_quasi_cliques();
+			list_top_k* top_k = new list_top_k();
+			auto top_k_gamma_quasi_cliques = top_k->extract_top_k(graph->k, all_gamma_quasi_cliques);
+			print_quasi_cliques(top_k_gamma_quasi_cliques, *graph);
+			printf("Runtime: %.3f\n", ((clock() - start_t) / CLOCKS_PER_SEC));
+			return 0;
+		}	
+	}
+	
+	double start_t = clock();
 	load_graph* graph = new load_graph();
 	graph->start();
 
@@ -51,5 +72,6 @@ int main() {
 	auto top_k_gamma_quasi_cliques = top_k->extract_top_k(graph->k, gamma_quasi_cliques);
 
 	print_quasi_cliques(top_k_gamma_quasi_cliques, *graph);
+	printf("Runtime: %.3f\n", ((clock() - start_t) / CLOCKS_PER_SEC));
 	return 0;
 }

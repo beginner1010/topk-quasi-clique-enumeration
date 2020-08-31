@@ -33,6 +33,7 @@ public:
 	~load_graph();
 public:
 	void start();
+	void start_exact();
 	char input_address[2000], output_address[2000];
 	double gamma;
 	double gamma_prime;

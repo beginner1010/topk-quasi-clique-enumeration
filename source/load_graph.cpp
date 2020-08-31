@@ -10,6 +10,30 @@ load_graph::load_graph() {
 }
 load_graph::~load_graph() {}
 
+void load_graph::start_exact() {
+	std::cerr << " Insert the input (graph) file location" << std::endl;
+	std::cerr << " >>> "; std::cin >> input_address;
+	assert(strlen(input_address) < 2000);
+	std::cerr << " Insert the output file" << std::endl;
+	std::cerr << " >>> "; std::cin >> output_address;
+	assert(strlen(output_address) < 2000);
+	std::cerr << " Insert gamma value [0.5, 1)" << std::endl;
+	std::cerr << " >>> "; std::cin >> gamma;
+	assert(gamma >= 0.5 && gamma < 1);
+	std::cerr << " Insert a positive integer k" << std::endl;
+	std::cerr << " >>> "; std::cin >> k;
+	assert(k > 0);
+	std::cerr << " Insert a positive integer as minimum size threshold" << std::endl;
+	std::cerr << " >>> "; std::cin >> min_size;
+	assert(0 < min_size);
+	std::cerr << " ---------------------------------------------------------------------------------------------------------------------- \n";
+	std::cerr << " Preprocessing the graph (We ignore texts, self-loops, and multiple edges in the input file) ..." << std::endl;
+	this->read_graph();
+	fprintf(stderr, " There are %d edges, and %d vertices\n", this->E, this->V);
+	freopen(output_address, "w", stdout);
+	fflush(stdout), fflush(stderr);
+}
+
 void load_graph::start() {
 	std::cerr << " Insert the input (graph) file location" << std::endl;
 	std::cerr << " >>> "; std::cin >> input_address;
