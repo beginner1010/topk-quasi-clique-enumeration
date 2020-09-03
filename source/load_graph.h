@@ -1,6 +1,6 @@
-/**
-@author Seyed-Vahid Sanei-Mehri
-Email contact: vas@iastate.edu
+/*
+	@author Seyed-Vahid Sanei-Mehri
+	Email contact: vas@iastate.edu
 */
 
 #pragma once
@@ -45,6 +45,7 @@ public:
 	int maximum_degree();
 	std::vector < std::vector < int > > adj;
 	std::unordered_map < int, int > map_idx_to_vertex;
+	void read_graph_test(); // remove it after testing
 private:
 	void read_graph();
 	std::vector < std::pair <int, int> > edges;

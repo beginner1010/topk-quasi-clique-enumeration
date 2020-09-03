@@ -1,6 +1,6 @@
-﻿/**
-@author Seyed-Vahid Sanei-Mehri
-Email contact: vas@iastate.edu
+﻿/*
+	@author Seyed-Vahid Sanei-Mehri
+	Email contact: vas@iastate.edu
 */
 
 #include "load_graph.h"
@@ -130,6 +130,54 @@ void load_graph::read_graph() {
 	}
 	fclose(f_in);
 }
+
+// Here, we read the graph. The first two integers are admitted as the endpoints of an edge.
+void load_graph::read_graph_test() {
+	std::string s;
+
+	this->E = 0;
+	this->V = 0;
+	this->map_vertex_to_idx.clear();
+	this->map_idx_to_vertex.clear();
+
+	std::set < std::pair <int, int> > seen_edges;
+
+	this->max_degree = 0;
+
+	while (std::getline(std::cin, s)) {
+		std::stringstream ss; ss << s;
+		std::vector <std::string> vec_str;
+		for (std::string z; ss >> z; vec_str.push_back(z));
+		if (((int)vec_str.size()) >= 2) {
+			bool is_all_num = true;
+			for (int i = 0; i < mmin(2, (int)vec_str.size()); i++) is_all_num &= this->all_num(vec_str[i]);
+			if (is_all_num) {
+				int A = to_int(vec_str[0]), B = to_int(vec_str[1]);
+				// ignore a self loop
+				if (A == B)
+					continue;
+
+				this->add_vertex(A);
+				this->add_vertex(B);
+
+				// the graph is undirected
+				if (A > B) 
+					std::swap(A, B);
+
+				// remove self loops or multiple edges 
+				if (seen_edges.find(std::make_pair(A, B)) != seen_edges.end())
+					continue;
+				
+				seen_edges.insert(std::make_pair(A, B));
+				adj[A].push_back(B);
+				adj[B].push_back(A);
+				this->max_degree = mmax(this->max_degree, mmax((int)adj[A].size(), (int)adj[B].size()));
+				E++;
+			}
+		}
+	}
+}
+
 
 int load_graph::num_edges() {
 	return this->E;

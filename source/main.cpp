@@ -1,6 +1,6 @@
-/**
-@author Seyed-Vahid Sanei-Mehri
-Email contact: vas@iastate.edu
+/*
+	@author Seyed-Vahid Sanei-Mehri
+	Email contact: vas@iastate.edu
 */
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -49,6 +49,7 @@ int main(int argc, char* argv[]) {
 		}	
 	}
 	
+	// run heuristic algorithm
 	double start_t = clock();
 	load_graph* graph = new load_graph();
 	graph->start();
