@@ -26,6 +26,14 @@ void print_quasi_cliques(std::vector< std::pair< int, std::set<int> > > quasi_cl
 	}
 }
 
+void print_quasi_cliques_sizes(std::vector< std::pair< int, std::set<int> > > quasi_cliques, load_graph& G) {
+	freopen(G.output_address, "w", stdout);
+	for (auto pair : quasi_cliques) {
+		printf("%d ", (int)pair.second.size());
+	}
+	printf("\n");
+}
+
 int main(int argc, char* argv[]) {
 	
 	std::ios::sync_with_stdio(false);
@@ -43,7 +51,7 @@ int main(int argc, char* argv[]) {
 			auto all_gamma_quasi_cliques = quickm->get_all_quasi_cliques();
 			list_top_k* top_k = new list_top_k();
 			auto top_k_gamma_quasi_cliques = top_k->extract_top_k(graph->k, all_gamma_quasi_cliques);
-			print_quasi_cliques(top_k_gamma_quasi_cliques, *graph);
+			print_quasi_cliques_sizes(top_k_gamma_quasi_cliques, *graph);
 			printf("Runtime: %.3f\n", ((clock() - start_t) / CLOCKS_PER_SEC));
 			return 0;
 		}	
@@ -72,7 +80,7 @@ int main(int argc, char* argv[]) {
 	list_top_k* top_k = new list_top_k();
 	auto top_k_gamma_quasi_cliques = top_k->extract_top_k(graph->k, gamma_quasi_cliques);
 
-	print_quasi_cliques(top_k_gamma_quasi_cliques, *graph);
+	print_quasi_cliques_sizes(top_k_gamma_quasi_cliques, *graph);
 	printf("Runtime: %.3f\n", ((clock() - start_t) / CLOCKS_PER_SEC));
 	return 0;
 }
